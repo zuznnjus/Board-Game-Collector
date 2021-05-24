@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="91dp"
+                android:layout_height="wrap_content"
+                android:text="Sort by:" />
+
+            <Button
+                android:id="@+id/buttonSortByDateId"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="Date" />
+
+            <Button
+                android:id="@+id/buttonSortByRankingId"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="Ranking" />
+
+            <Button
+                android:id="@+id/buttonSortByNameId"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="Name" />
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </TableLayout>
+        </ScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/buttonNewGameId"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:text="New game" />
+
+            <Button
+                android:id="@+id/buttonBggId"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:text="Bgg" />
+
+            <Button
+                android:id="@+id/buttonLocationsId"
+                android:layout_width="145dp"
+                android:layout_height="wrap_content"
+                android:text="Locations" />
+        </LinearLayout>
+
+    <TextView
+        android:id="@+id/textViewTestId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView" />
+</LinearLayout>
