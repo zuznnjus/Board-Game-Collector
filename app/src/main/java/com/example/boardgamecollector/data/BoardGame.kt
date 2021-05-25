@@ -6,7 +6,7 @@ data class BoardGame(
     var id: Int? = 0,
     var bggId: Int? = 0,
     var title: String? = "",
-    var originalTitle: String?,
+    var originalTitle: String? = null,
     var yearPublished: Int? = null,
     var description: String? = null,
     var orderDate: LocalDate = LocalDate.now(),
@@ -15,7 +15,7 @@ data class BoardGame(
     var suggestedRetailPrice: Double? = 0.0,
     var eanOrUpc: String? = "",
     var productionCode: String? = "",
-    var type: String?,
+    var type: String? = "boardgame",
     var comment: String? = null,
     var thumbnail: String? = null
 ) {

@@ -16,22 +16,22 @@ class BoardGameDataXmlParser: XmlParser<List<BoardGame>> {
         var tag: String? = ""
         var event = parser.eventType
 
-        var gameId: Int = 0
+        var bggId: Int? = 0
         var gameType: String? = null
-        var gameName: String? = null
+        var gameTitle: String? = null
         var yearPublished: Int? = null
-        var boardGamesList = mutableListOf<BoardGame>()
+        val boardGamesList = mutableListOf<BoardGame>()
 
         while (event != XmlPullParser.END_DOCUMENT) {
             tag = parser.name
             when (event) {
                 XmlPullParser.START_TAG -> when (tag) {
                         "item" -> {
-                            gameId = parser.getAttributeValue(null, "id").toInt()
+                            bggId = parser.getAttributeValue(null, "id").toInt()
                         }
                         "name" -> {
                             gameType = parser.getAttributeValue(null, "type")
-                            gameName = parser.getAttributeValue(null, "value")
+                            gameTitle = parser.getAttributeValue(null, "value")
                         }
                         "yearpublished" -> {
                             yearPublished = parser.getAttributeValue(null, "value").toInt()
@@ -39,7 +39,7 @@ class BoardGameDataXmlParser: XmlParser<List<BoardGame>> {
                     }
                 XmlPullParser.END_TAG -> when (tag) {
                     "item" -> {
-                        val boardGame = BoardGame(bggId = gameId, originalTitle = gameName,
+                        val boardGame = BoardGame(bggId = bggId, originalTitle = gameTitle,
                         yearPublished = yearPublished, type = gameType)
                         boardGamesList.add(boardGame)
                     }
