@@ -6,9 +6,9 @@ import com.example.boardgamecollector.data.Location
 class LocationHandler(dataBaseHandler: DataBaseHandler) {
     private val db = dataBaseHandler.writableDatabase
 
-    fun insertLocation(location: Location) {
+    fun insertLocation(locationName: String) {
         val contentValues = ContentValues()
-        contentValues.put(L_COLUMN_NAME, location.name)
+        contentValues.put(L_COLUMN_NAME, locationName)
 
         db.insert(TABLE_LOCATIONS, null, contentValues)
     }
@@ -33,16 +33,31 @@ class LocationHandler(dataBaseHandler: DataBaseHandler) {
         return locations
     }
 
-    fun updateLocation(location: Location) {
-        val contentValues = ContentValues()
-        contentValues.put(L_COLUMN_NAME, location.name)
+    fun getLocationName(locationId: Int): String {
+        val query = "SELECT * FROM $TABLE_LOCATIONS WHERE $L_COLUMN_ID=?"
+        val cursor = db.rawQuery(query, arrayOf(locationId.toString()))
 
-        db.update(TABLE_BOARD_GAMES, contentValues, "$L_COLUMN_ID = ?",
-            arrayOf(location.id.toString()))
+        lateinit var locationName: String
+
+        if (cursor.moveToFirst()) {
+            locationName = cursor.getString(cursor.getColumnIndex(L_COLUMN_NAME))
+        }
+
+        cursor.close()
+        return locationName
+    }
+
+    fun updateLocation(locationId: Int, locationName: String) {
+        val contentValues = ContentValues()
+        contentValues.put(L_COLUMN_NAME, locationName)
+
+        db.update(
+            TABLE_LOCATIONS, contentValues, "$L_COLUMN_ID = ?",
+            arrayOf(locationId.toString()))
     }
 
     fun deleteLocation(id: Int) {
-        val success = db.delete(TABLE_LOCATIONS, "$L_COLUMN_ID= ?",
+        db.delete(TABLE_LOCATIONS, "$L_COLUMN_ID= ?",
             arrayOf(id.toString()))
     }
 }
