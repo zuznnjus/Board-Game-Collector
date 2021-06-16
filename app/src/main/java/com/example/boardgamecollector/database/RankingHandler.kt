@@ -1,7 +1,6 @@
 package com.example.boardgamecollector.database
 
 import com.example.boardgamecollector.data.Ranking
-import java.time.LocalDate
 
 class RankingHandler(dataBaseHandler: DataBaseHandler) {
     private val db = dataBaseHandler.writableDatabase

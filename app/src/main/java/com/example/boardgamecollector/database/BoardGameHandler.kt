@@ -15,9 +15,9 @@ class BoardGameHandler(dataBaseHandler: DataBaseHandler) {
         contentValues.put(BG_COLUMN_YEAR_PUBLISHED, boardGame.yearPublished)
         contentValues.put(BG_COLUMN_DESCRIPTION, boardGame.description)
         contentValues.put(BG_COLUMN_ORDER_DATE,
-            Converter.convertLocalDateToEpochDay(boardGame.orderDate))
+            boardGame.orderDate?.let { Converter.convertLocalDateToEpochDay(it) })
         contentValues.put(BG_COLUMN_ADDED_TO_COLLECTION_DATE,
-            Converter.convertLocalDateToEpochDay(boardGame.addedToCollectionDate))
+            boardGame.addedToCollectionDate?.let { Converter.convertLocalDateToEpochDay(it) })
         contentValues.put(BG_COLUMN_PRICE, boardGame.price)
         contentValues.put(BG_COLUMN_SUGGESTED_RETAIL_PRICE, boardGame.suggestedRetailPrice)
         contentValues.put(BG_COLUMN_EAN_OR_UPC, boardGame.eanOrUpc)
@@ -78,9 +78,9 @@ class BoardGameHandler(dataBaseHandler: DataBaseHandler) {
         contentValues.put(BG_COLUMN_YEAR_PUBLISHED, boardGame.yearPublished)
         contentValues.put(BG_COLUMN_DESCRIPTION, boardGame.description)
         contentValues.put(BG_COLUMN_ORDER_DATE,
-            Converter.convertLocalDateToEpochDay(boardGame.orderDate))
+            boardGame.orderDate?.let { Converter.convertLocalDateToEpochDay(it) })
         contentValues.put(BG_COLUMN_ADDED_TO_COLLECTION_DATE,
-            Converter.convertLocalDateToEpochDay(boardGame.addedToCollectionDate))
+            boardGame.addedToCollectionDate?.let { Converter.convertLocalDateToEpochDay(it) })
         contentValues.put(BG_COLUMN_PRICE, boardGame.price)
         contentValues.put(BG_COLUMN_SUGGESTED_RETAIL_PRICE, boardGame.suggestedRetailPrice)
         contentValues.put(BG_COLUMN_EAN_OR_UPC, boardGame.eanOrUpc)

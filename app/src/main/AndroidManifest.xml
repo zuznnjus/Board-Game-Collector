@@ -11,10 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BoardGameCollector">
+        <activity android:name=".activity.NewBoardGameAddActivity" />
         <activity android:name=".activity.BoardGameLocationActivity" />
         <activity android:name=".activity.BoardGameRankingActivity" />
         <activity android:name=".activity.BoardGameGeekActivity" />
-        <activity android:name=".activity.NewBoardGameActivity" />
+        <activity android:name=".activity.NewBoardGameSearchActivity" />
         <activity android:name=".activity.BoardGameDetailsActivity" />
         <activity android:name=".activity.MainActivity">
             <intent-filter>

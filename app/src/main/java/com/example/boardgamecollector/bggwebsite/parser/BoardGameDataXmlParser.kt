@@ -16,7 +16,7 @@ class BoardGameDataXmlParser: XmlParser<List<BoardGame>> {
         var tag: String? = ""
         var event = parser.eventType
 
-        var bggId: Int? = 0
+        var bggId: Int = 0
         var gameType: String? = null
         var gameTitle: String? = null
         var yearPublished: Int? = null

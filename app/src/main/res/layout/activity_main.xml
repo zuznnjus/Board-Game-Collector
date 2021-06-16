@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -11,27 +14,17 @@
 
             <TextView
                 android:id="@+id/textView3"
-                android:layout_width="91dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="Sort by:" />
 
-            <Button
-                android:id="@+id/buttonSortByDateId"
-                android:layout_width="100dp"
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Date" />
+                android:layout_weight="1"/>
 
-            <Button
-                android:id="@+id/buttonSortByRankingId"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="Ranking" />
-
-            <Button
-                android:id="@+id/buttonSortByNameId"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="Name" />
         </LinearLayout>
 
         <ScrollView
@@ -47,30 +40,36 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <Button
-                android:id="@+id/buttonNewGameId"
-                android:layout_width="130dp"
+                android:id="@+id/buttonNewBoardGameId"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="New game" />
+                android:text="Add new board game" />
 
-            <Button
-                android:id="@+id/buttonBggId"
-                android:layout_width="130dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Bgg" />
+                android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/buttonLocationsId"
-                android:layout_width="145dp"
-                android:layout_height="wrap_content"
-                android:text="Locations" />
+                <Button
+                    android:id="@+id/buttonBggScreenId"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Bgg screen" />
+
+                <Button
+                    android:id="@+id/buttonLocationsId"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Locations" />
+
+            </LinearLayout>
+
         </LinearLayout>
 
-    <TextView
-        android:id="@+id/textViewTestId"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
-</LinearLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
