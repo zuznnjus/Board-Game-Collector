@@ -1,16 +1,3 @@
-package com.example.boardgamecollector.bggwebsite.parser
-
-import com.example.boardgamecollector.data.Artist
-import com.example.boardgamecollector.data.BoardGame
-import com.example.boardgamecollector.data.Designer
-import org.xmlpull.v1.XmlPullParser
-import org.xmlpull.v1.XmlPullParserFactory
-import java.io.InputStream
-
-class BoardGameDetailsXmlParser : XmlParser<BoardGame> {
-    override fun parse(inputStream: InputStream): BoardGame {
-        val parserFactory: XmlPullParserFactory = XmlPullParserFactory.newInstance()
-        val parser: XmlPullParser = parserFactory.newPullParser()
 
         parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false)
         parser.setInput(inputStream, null)
@@ -19,6 +6,7 @@ class BoardGameDetailsXmlParser : XmlParser<BoardGame> {
         var event = parser.eventType
         var text: String? = ""
 
+        var originalTitle: String? = null
         var thumbnail: String? = null
         var description: String? = null
         var yearPublished: Int? = null
@@ -30,6 +18,13 @@ class BoardGameDetailsXmlParser : XmlParser<BoardGame> {
             tag = parser.name
             when (event) {
                 XmlPullParser.START_TAG -> when (tag) {
+                    "name" -> {
+                        val type = parser.getAttributeValue(null, "type")
+
+                        if (type == "primary") {
+                            originalTitle = parser.getAttributeValue(null, "value")
+                        }
+                    }
                     "yearpublished" -> {
                         yearPublished = parser.getAttributeValue(null, "value").toInt()
                     }
@@ -48,9 +43,9 @@ class BoardGameDetailsXmlParser : XmlParser<BoardGame> {
                     }
                     "rank" -> {
                         val type = parser.getAttributeValue(null, "type")
-
-                        if (type == "subtype") {
-                            rankingPosition = parser.getAttributeValue(null, "value").toInt()
+                        val value = parser.getAttributeValue(null, "value")
+                        if (type == "subtype" && value != "Not Ranked") {
+                            rankingPosition = value.toInt()
                         }
                     }
                 }
@@ -63,8 +58,14 @@ class BoardGameDetailsXmlParser : XmlParser<BoardGame> {
             event = parser.next()
         }
 
-        // TODO co z artystami, designerami i rankingiem?
-        return BoardGame(yearPublished = yearPublished, description = description,
-            thumbnail = thumbnail)
+        return BoardGame(
+            yearPublished = yearPublished,
+            originalTitle = originalTitle,
+            description = description,
+            thumbnail = thumbnail,
+            designers = designers,
+            artists = artists,
+            ranking = rankingPosition
+        )
     }
 }
