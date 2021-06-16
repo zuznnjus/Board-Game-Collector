@@ -6,14 +6,14 @@ import android.os.Bundle
 import android.widget.EditText
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.boardgamecollector.R
+import com.example.boardgamecollector.adapter.SearchBoardGameAdapter
 import com.example.boardgamecollector.bggwebsite.downloader.BoardGameDataDownloader
 import com.example.boardgamecollector.data.BoardGame
 import kotlinx.android.synthetic.main.activity_new_board_game_search.*
 
-const val BGG_ID_MESSAGE = "bggId"
-const val EMPTY_MESSAGE = -1
+const val BGG_MESSAGE = "bgg"
 
-class NewBoardGameSearchActivity : AppCompatActivity(), CustomAdapter.OnItemClickListener {
+class NewBoardGameSearchActivity : AppCompatActivity(), SearchBoardGameAdapter.OnItemClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_board_game_search)
@@ -37,20 +37,24 @@ class NewBoardGameSearchActivity : AppCompatActivity(), CustomAdapter.OnItemClic
     }
 
     private fun displayBoardGamesList(boardGamesList: List<BoardGame>) {
-        val adapter = CustomAdapter(this, boardGamesList, this)
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = adapter
+        val adapter =
+            SearchBoardGameAdapter(
+                this,
+                boardGamesList,
+                this
+            )
+        recyclerViewSearchGame.layoutManager = LinearLayoutManager(this)
+        recyclerViewSearchGame.adapter = adapter
     }
 
     private fun showAddBoardGameActivity() {
         val intent = Intent(this, NewBoardGameAddActivity::class.java)
-        intent.putExtra(BGG_ID_MESSAGE, EMPTY_MESSAGE)
         startActivity(intent)
     }
 
-    override fun onItemClick(bggId: Int) {
+    override fun onItemClick(game: BoardGame) {
         val intent = Intent(this, NewBoardGameAddActivity::class.java)
-        intent.putExtra(BGG_ID_MESSAGE, bggId)
+        intent.putExtra(BGG_MESSAGE, game)
         startActivity(intent)
     }
 }
